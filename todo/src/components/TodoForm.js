@@ -15,21 +15,37 @@ const TodoForm = () => {
     const submitTodo = e => {
         e.preventDefault();
         console.log("hello")
-        dispatch({type: "UPDATE_TODO", payload: newTodo})
+        dispatch({ type: "UPDATE_TODO", payload: newTodo })
     }
 
 
     return (
-        <form>
-            <input 
-                type="text"
-                name="newTodo"
-                value={newTodo}
-                onChange={handleChanges}
+        <div>
+            <h1>Todos:</h1>
+            {state.todos.map(todo => {
+                console.log("from todoform", state.todos)
+                return(
+                    <div 
+                        key={todo.id} 
+                        className={`todo${todo.completed ? "completed" : ""}`}
+
+                    >
+                        <p>{todo.item}</p>
+                    </div>
+                )
+            })}
+            <form>
+                <input
+                    type="text"
+                    name="newTodo"
+                    value={newTodo}
+                    onChange={handleChanges}
                 />
-                <button onClick={(event) =>{submitTodo(event)}}>Add</button>
-                {console.log(state)}
-        </form>
+                <button onClick={(event) => { submitTodo(event) }}>Add</button>
+                {console.log("from form", state)}
+            </form>
+        </div>
+
     )
 }
 
