@@ -1,25 +1,31 @@
 import React, { useState, useReducer } from 'react'
 import { reducer, initialState} from "../reducers/reducer"
+import TodoForm from './TodoForm';
 
 
 const ParentTodo = () => {
     const [state, dispatch] = useReducer(reducer, initialState);
 
-    const [newTodo, setTodo] = useState('');
+    // const [newTodo, setNewTodo] = useState({});
+
+
+ 
 
     return (
         <div>
             <h1>Todos:</h1>
-            {state.map(todo => {
-                console.log(todo)
+            {state.todos.map(todo => {
+                console.log("from parent",todo)
                 return (
-                   <div className={`todo${todo.completed ? "completed" : ""}`}
+                   <div key={todo.id} className={`todo${todo.completed ? "completed" : ""}`}
+                        //onclick assigned to dispatch
                    >
                        
                 <p>{todo.item}</p>
                    </div>
                 )
             })}
+            <TodoForm />
         </div>
     )
 }
