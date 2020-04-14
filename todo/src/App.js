@@ -1,11 +1,11 @@
 import React from 'react';
 import './App.css';
-import ParentTodo from './components/ParentTodo';
+import Todoform from './components/TodoForm';
 
 function App() {
   return (
     <div className="App">
-      <ParentTodo/>
+      <Todoform/>
     </div>
   );
 }

@@ -6,7 +6,7 @@ import { reducer, initialState } from '../reducers/reducer'
 const TodoForm = () => {
     const [state, dispatch] = useReducer(reducer, initialState);
 
-    const [newTodo, setNewTodo] = useState('');
+    const [newTodo, setNewTodo] = useState();
 
     const handleChanges = e => {
         setNewTodo(e.target.value)
@@ -28,6 +28,7 @@ const TodoForm = () => {
                 onChange={handleChanges}
                 />
                 <button onClick={(event) =>{submitTodo(event)}}>Add</button>
+                {console.log(state)}
         </form>
     )
 }
