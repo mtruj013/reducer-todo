@@ -18,22 +18,27 @@ const TodoForm = () => {
         dispatch({ type: "UPDATE_TODO", payload: newTodo })
     }
 
+    const clearTodo = e => {
+        e.preventDefault();
+        dispatch({ type: "CLEAR_TODO" })
+    }
+
 
     return (
         <div>
             <h1>Todos:</h1>
-            {state.todos.map(todo => {
-                console.log("from todoform", state.todos)
-                return(
-                    <div 
-                        key={todo.id} 
-                        className={`todo${todo.completed ? "completed" : ""}`}
-
+            <ul>
+                {state.todos.map((todo) => (
+                    <li
+                        onClick={() =>
+                            dispatch({ type: "TOGGLE_TODO", payload: todo.id })
+                        }
+                        className={todo.completed ? "completed" : ""}
                     >
-                        <p>{todo.item}</p>
-                    </div>
-                )
-            })}
+                        {todo.item}{" "}
+                    </li>
+                ))}
+            </ul>
             <form>
                 <input
                     type="text"
@@ -43,6 +48,7 @@ const TodoForm = () => {
                 />
                 <button onClick={(event) => { submitTodo(event) }}>Add</button>
                 {console.log("from form", state)}
+                <button onClick={clearTodo}>Clear</button>
             </form>
         </div>
 
